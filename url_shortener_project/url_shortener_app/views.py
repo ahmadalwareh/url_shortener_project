@@ -8,9 +8,7 @@ import random
 
 class URLShortenView(views.APIView):
     def post(self, request):
-        original_url = request.data.get('original_url', None)
-        if original_url is None:
-            original_url = "https://www.example.com/"
+        original_url = request.data.get('original_url')
         short_url = self.generate_short_url()
         mapping = URLMapping.objects.create(
             short_url=short_url, original_url=original_url)
